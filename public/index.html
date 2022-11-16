@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Twibbon Border Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Twibbon generator untuk membuat gambar kampanye untuk media sosial.">
+  <meta property="og:image" content="https://www.nyobain.ml/og.png">
+
+  <link rel="icon" href="/favicon.ico">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/dialog.css">
+  
+</head>
+<body class="d-flex align-items-md-center justify-content-center flex-md-row-reverse">
+<div class="wrapper ps-md-5 pt-md-5 mt-md-5">
+  <div class="l-container" id="myNode">
+    <div class="token">
+      <div class="c-border"></div>
+      <div class="img-wrapper">
+        <img id="portrait" src="/ferry.png" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="controls ms-0 ms-md-3 mt-md-5 pt-5 pt-md-3">
+  <fieldset>
+    <h1>Twibbon Border Generator</h1>
+  </fieldset>
+  <fieldset id="tokenPreview">
+  </fieldset>
+  <fieldset>
+    <p class="label">Character Art:</p>
+    <div id="upload-display"></div>
+    <label class="btn-upload" for="upload">Unggah Gambar
+      <input type="file" id="upload" name="upload" accept=".png, .jpeg, .jpg"/>
+    </label>
+  </fieldset>
+  <fieldset id="widthField">
+    <label for="width">Size:<span class="display" id="width-display">300</span><span class="unit">px</span></label>
+    <input class="form-range" type="range" min="100" max="600" value="300" step="10" id="width" name="width"/>
+  </fieldset>
+  <fieldset>
+    <label for="border-width">Border Width:<span class="display" id="border-width-display">15</span><span class="unit">px</span></label>
+    <input class="form-range" type="range" min="5" max="100" value="15" id="border-width" name="border-width"/>
+  </fieldset>
+  <fieldset>
+    <p class="label">Border Color</p>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="color" id="red" value="red" checked="checked"/>
+      <label class="form-check-label" for="red">Merah</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="color" id="blue" value="blue"/>
+      <label class="form-check-label" for="blue">Biru</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="color" id="green" value="green"/>
+      <label class="form-check-label" for="green">Hijau</label>
+    </div>
+  </fieldset>
+  <fieldset>
+    <p class="label" data-modal="#modal1">Tutorial</p>
+    <p id="error">Silahkan Unggah Gambar.</p>
+    <button type="button" id="btn_convert">
+      Unduh Gambar
+      <svg class="icon icon-download" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="944.699px" height="944.699px" viewBox="0 0 944.699 944.699" xml:space="preserve"><g><path d="M894.801,579.05h-309.5l-41.5,47.199c-18,20.5-44.102,32.301-71.401,32.301c-27.3,0-53.4-11.801-71.4-32.301l-41.5-47.199H50c-27.6,0-50,22.4-50,50v198.5c0,27.6,22.4,50,50,50h844.699c27.602,0,50-22.4,50-50v-198.5C944.801,601.45,922.4,579.05,894.801,579.05z M139.2,770.95c-23.5,0-42.6-19.102-42.6-42.602s19.1-42.6,42.6-42.6s42.6,19.1,42.6,42.6S162.7,770.95,139.2,770.95z"/><path d="M419.4,579.05l15.4,17.6c10,11.301,23.8,17,37.6,17c13.799,0,27.6-5.699,37.6-17l15.4-17.6L734.1,341.25c28.4-32.3,5.4-83-37.6-83h-65.6v-141.1c0-27.6-22.4-50-50-50h-217c-27.6,0-50,22.4-50,50v141.2h-65.6c-43,0-65.9,50.7-37.6,83L419.4,579.05z"/></g></svg>
+    </button>
+  </fieldset>
+</div>
+
+<div class="modal" data-modal-window id="modal1">
+    <a  class="close" data-modal-close href="#">x</a>
+    <h3>Tutorial</h3>
+    <p>Selamat datang di Nyobain ML! Mulailah dengan melihat tutorial langkah demi langkah kami atau masuk ke tampilan utama.</p>
+    <p>1. Klik Unggah Gambar</p>
+    <p>2. Atur besar atau kecilnya ukuran border dengan cara menggeser.</p>
+    <p>3. Pilih warna border selera Anda, ada 3 warna; Merah, Biru, Hijau.</p>
+    <p>4. Klik Unduh untuk menyimpan hasil twibbon.</p>
+    <button data-modal-close>Ok</button>
+</div>
+
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/dom-to-image-more@2.8.0/src/dom-to-image-more.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script  src="/globe.js"></script>
+<script src="/dialog.js"></script>
+<script>
+modals.init();
+</script>
+</body>
+</html>
