@@ -313,3 +313,17 @@ button .icon {
     line-height: 1.1;
   }
 }
+svg { 
+  position: fixed; 
+  bottom: 10px; right: 10px; fill: #888; 
+  opacity: 0.2; 
+}
+.blinker { 
+  animation-name: blinker;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+  display: inline-block;
+}
+@keyframes blinker { 
+  from { opacity: 1.0; } to { opacity: 0.0; }
+}
